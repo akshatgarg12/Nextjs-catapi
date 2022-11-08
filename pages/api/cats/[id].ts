@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import CatInterface from '../../../interfaces/Cat'
+import CatProfileInterface from '../../../interfaces/CatProfile'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<CatInterface>
+  res: NextApiResponse<CatProfileInterface>
 ){
     const {id : catId} = req.query
     const BASE_URL = "https://api.thecatapi.com/v1/images"

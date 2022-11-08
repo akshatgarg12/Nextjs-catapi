@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from '../styles/Home.module.css'
-import CatInterface from '../interfaces/Cat'
+import CatProfileInterface from '../interfaces/CatProfile'
 
-const Profile = ({id, url, name, origin, description}:CatInterface) => {
+const Profile = ({id, url, name, origin, description}:CatProfileInterface) => {
     return (
         <div className={styles.profile}>
             <Image

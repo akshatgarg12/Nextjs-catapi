@@ -57,7 +57,7 @@ export default function Home() {
           }
         </div>
         {
-          order !== OrderEnum.RAND && 
+          // order !== OrderEnum.RAND && 
             <div className={styles.pagination}>
               <button disabled = {page === 0} onClick={prevPage}>{'<'}</button>
               <button onClick={nextPage}>{'>'}</button>

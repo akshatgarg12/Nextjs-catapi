@@ -1,4 +1,4 @@
-export default interface CatInterface{
+export default interface CatProfileInterface{
     id : string,
     url : string,
     name : string,
