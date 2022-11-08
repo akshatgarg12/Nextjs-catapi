@@ -3,22 +3,32 @@ import { useEffect, useState } from "react";
 import Profile from "../components/Profile";
 import styles from '../styles/Home.module.css'
 import CatProfileInterface from '../interfaces/CatProfile'
+import axios from 'axios'
 
 const ProfilePage = () => {
   const router = useRouter()
   const {id} = router.query
   const [cat, setCat] = useState<CatProfileInterface>()
-  
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     const getCatInfo = async () => {
-      const response = await fetch(`/api/cats/${id}`)
-      const data = await response.json()  
-      setCat(data)
+      try{
+        setLoading(true)
+        const response = await axios.get(`/api/cats/${id}`)
+        const data = response.data
+        setCat(data)
+      }catch(e){
+        // a error screen will automatically be rendered from error boundary component
+        console.error(e)
+      }finally{
+        setLoading(false)
+      }
   }
     if(id) getCatInfo()
   }, [id])
 
-  if(!cat) return <h4>Loading..</h4>
+  if(!cat || loading) return <h4>Loading..</h4>
 
   return (
     <div>
