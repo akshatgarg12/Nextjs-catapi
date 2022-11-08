@@ -2,9 +2,15 @@ import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import styles from '../styles/Home.module.css'
 
+enum OrderEnum{
+  ASC = "ASC",
+  DESC = "DESC",
+  RAND = "RAND"
+}
+
 export default function Home() {
   const [cats, setCats] = useState([])
-  const [order, setOrder] = useState('ASC')
+  const [order, setOrder] = useState<OrderEnum>(OrderEnum.ASC)
   const [page, setPage] = useState(0)
 
   const fetchCats = async (page:number, order : string) => {
@@ -36,9 +42,9 @@ export default function Home() {
         <div className={styles.order}>
           <label>order : </label>
           <select name="order" id="order" defaultValue={order} onChange={onOptionChangeHandler}>
-            <option value="RAND">Random</option>
-            <option value="ASC">Ascending</option>
-            <option value="DESC">Descending</option>
+            <option value={OrderEnum.RAND}>Random</option>
+            <option value={OrderEnum.ASC}>Ascending</option>
+            <option value={OrderEnum.DESC}>Descending</option>
           </select>
         </div>
 
@@ -51,7 +57,7 @@ export default function Home() {
           }
         </div>
         {
-          order !== 'RAND' && 
+          order !== OrderEnum.RAND && 
             <div className={styles.pagination}>
               <button disabled = {page === 0} onClick={prevPage}>{'<'}</button>
               <button onClick={nextPage}>{'>'}</button>

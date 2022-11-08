@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import CatCard from '../../../interfaces/CatCard';
 
-type Cats = {
+type CatObject = {
   id : string,
   url : string,
   width : Number,
@@ -11,18 +12,24 @@ type Cats = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Array<Cats>>
+  res: NextApiResponse<Array<CatCard>>
 ){
     const {limit, order, page} = req.query;
     const BASE_URL = "https://api.thecatapi.com/v1/images/search"
     const URL = BASE_URL + `?limit=${limit}&order=${order}&page=${page}`
-    console.log(URL)
+    // console.log(URL)
     const response = await fetch(URL, {
         headers : {
-            'x-api-key' : 'live_X8Em0cIuXff4NczQgRTWqS6bMCOLFP7kiHweV8mBcqpgSN96SNrICMzVgZy7WVm4' 
+            'x-api-key' :  process.env.CATAPI_KEY! 
         }
     })
     const data = await response.json()
-    console.log(data)
-    res.status(200).json(data)
+    // console.log(data)
+    const requiredData = data.map((cat : CatObject) => {
+      return {
+        id : cat.id,
+        url : cat.url
+      }
+    })
+    res.status(200).json(requiredData)
 }

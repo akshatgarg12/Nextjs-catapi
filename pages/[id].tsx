@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Profile from "../components/Profile";
+import styles from '../styles/Home.module.css'
+import CatInterface from '../interfaces/Cat'
 
 const ProfilePage = () => {
   const router = useRouter()
   const {id} = router.query
-  const [cat, setCat] = useState<any>()
- 
+  const [cat, setCat] = useState<CatInterface>()
   
   useEffect(() => {
     const getCatInfo = async () => {
@@ -21,6 +22,10 @@ const ProfilePage = () => {
 
   return (
     <div>
+      <div className={styles.goBack}>
+        <button onClick={() => router.back()}>Go Back</button>
+      </div>
+      
       <Profile 
         id = {cat.id}
         url = {cat.url}

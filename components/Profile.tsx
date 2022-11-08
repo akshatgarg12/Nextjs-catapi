@@ -1,8 +1,10 @@
 import Image from "next/image";
 import styles from '../styles/Home.module.css'
-const Profile = ({id, url, name, origin, description}:any) => {
+import CatInterface from '../interfaces/Cat'
+
+const Profile = ({id, url, name, origin, description}:CatInterface) => {
     return (
-        <div className={styles.container}>
+        <div className={styles.profile}>
             <Image
                 height = {300}
                 width = {300}

@@ -1,29 +1,21 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { isArray } from 'util'
-
-type Cat = {
-  id : string,
-  url : string,
-  name ?: string,
-  description ?: string,
-  origin ?: string
-}
+import CatInterface from '../../../interfaces/Cat'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Cat>
+  res: NextApiResponse<CatInterface>
 ){
     const {id : catId} = req.query
     const BASE_URL = "https://api.thecatapi.com/v1/images"
     const URL = BASE_URL + `/${catId}`
-    console.log(URL)
+    // console.log(URL)
     const response = await fetch(URL, {
         headers : {
-            'x-api-key' : 'live_X8Em0cIuXff4NczQgRTWqS6bMCOLFP7kiHweV8mBcqpgSN96SNrICMzVgZy7WVm4' 
+            'x-api-key' : process.env.CATAPI_KEY!
         }
     })
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
 
     const {id, url, breeds} = data
     if(Array.isArray(breeds) && breeds.length > 0){
