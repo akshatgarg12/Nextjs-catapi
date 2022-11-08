@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import styles from '../styles/Home.module.css'
@@ -29,14 +27,8 @@ export default function Home() {
   }, [page, order])
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>CatAPI</title>
-        <meta name="Next Js project using catAPI" content="Created by Akshat Garg" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
+    <div>
+      
         <h1 className={styles.title}>
             Cats
         </h1>
@@ -53,6 +45,7 @@ export default function Home() {
         <div className={styles.grid}>
           {
             cats.map(({id,url}) => {
+              console.log(id)
               return <Card key = {id} id = {id} url = {url}  />
             })
           }
@@ -64,11 +57,6 @@ export default function Home() {
               <button onClick={nextPage}>{'>'}</button>
             </div>
         }    
-      </main>
-
-      <footer className={styles.footer}>
-        <p>Created by Akshat Garg</p>
-      </footer>
     </div>
   )
 }

@@ -16,10 +16,21 @@
   margin : 1em;
   font-size: 1em;
   font-family: 'Arial';
+  text-align: center;
+}
+
+.grid {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 90%;
 }
 
 .pagination{
-  margin:1em;
+  margin:1em auto;
   display: flex;
   flex-direction: row;
   width: 5em;
@@ -75,14 +86,7 @@
 }
 
 
-.grid {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 90%;
-}
+
 
 .logo {
   height: 1em;

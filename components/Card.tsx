@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface CardProps {
     id : string,
@@ -7,7 +8,7 @@ interface CardProps {
 
 const Card = ({id,url} : CardProps) => {
     return (
-        <div>
+        <Link href={`/${id}`}>
             <Image src={url} 
                    alt="image of a cat" 
                    width={300}
@@ -15,7 +16,7 @@ const Card = ({id,url} : CardProps) => {
                    style={{cursor:'pointer'}}
                    onClick={() => {console.log('redirect to other page')}}
             />
-        </div>
+        </Link>
     );
 }
  
